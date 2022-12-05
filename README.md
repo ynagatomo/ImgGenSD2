@@ -11,8 +11,9 @@ You can create images specifying any prompt (text) such as "a photo of an astron
 You can run the app on above mobile devices.
 And you can run the app on Mac, building as a Designed for iPad app.
 
-The Xcode project does not contain the CoreML models of Stable Diffusion v2 (SD2).
+This Xcode project does not contain the CoreML models of Stable Diffusion v2 (SD2).
 So you need to make them converting the PyTorch SD2 models using Apple converter tools.
+(see below)
 
 The project uses the Apple/ml-stable-diffusion Swift Package.
 You can see how it works through the simple sample code.
@@ -27,6 +28,7 @@ You can see how it works through the simple sample code.
 ## Convert CoreML models
 
 Convert the PyTorch SD2 model to CoreML models, following Apple's instructions.
+(https://github.com/apple/ml-stable-diffusion)
 
 ```bash
 # create a Python environment and install dependencies
