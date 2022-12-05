@@ -1,6 +1,6 @@
 # Image Generator with Stable Diffusion v2
 
-![AppIcon](images/appIcon180.png)
+![AppIcon](images/appicon180.png)
 
 A minimal iOS app that generates images using Stable Diffusion v2.
 
@@ -29,8 +29,8 @@ You need to add the converted coreml model files yourself.
 2. add the files to the models2/Resources folder in the Xcode project.
 - merges, TextEndoder, Unet, VAEDecoder, vocab
 
-![Image](images/ss1_240.PNG)
-![Image](images/ss2_240.PNG)
+![Image](images/ss1_240.png)
+![Image](images/ss2_240.png)
 
 ## Considerations
 
