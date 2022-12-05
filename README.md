@@ -20,8 +20,7 @@ You can see how it works through the simple sample code.
 
 - Apple/ml-stable-diffusion repo: https://github.com/apple/ml-stable-diffusion
 
-![Image](images/ss1_240.png)
-![Image](images/ss2_240.png)
+![Image](images/ss_4_imgs.png)
 
 ![Image](images/ss0_1280.png)
 
@@ -79,11 +78,20 @@ Now you can build the project, targeting to iPhone / iPad / My Mac (Designed for
 
 ## Consideration
 
-- Large binary file: Since the model files are very large (about 2.5GB), it causes a large binary of the app.
-The FAQ of Apple documentation says "The recommended option is to prompt the user to download 
+### Large binary file
+
+- Since the model files are very large (about 2.5GB), it causes a large binary of the app.
+- The FAQ of Apple documentation says "The recommended option is to prompt the user to download 
 these assets upon first launch of the app. This keeps the app binary size independent of the 
 Core ML models being deployed. Disclosing the size of the download to the user is extremely 
 important as there could be data charges or storage impact that the user might not be comfortable with.".
+
+### Step count
+
+- Stable Diffusion v2 can generate good images with fewer steps than v1.4/v1.5.
+- This means that the SD2's generation time is shorter.
+
+![Image](images/ss_4_steps.png)
 
 ## References
 
