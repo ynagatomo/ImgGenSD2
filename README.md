@@ -2,8 +2,6 @@
 
 ![AppIcon](images/appicon180.png)
 
-![Image](images/ss0_1280.png)
-
 A minimal iOS app that generates images using Stable Diffusion v2.
 You can create images specifying any prompt (text) such as "a photo of an astronaut riding a horse on mars".
 
@@ -23,6 +21,8 @@ You can see how it works through the simple sample code.
 
 ![Image](images/ss1_240.png)
 ![Image](images/ss2_240.png)
+
+![Image](images/ss0_1280.png)
 
 ## Convert CoreML models
 
@@ -47,8 +47,8 @@ Please visit Hugging Face's site and make an access token at Account Settings.
 
 ```bash
 # cli login
-% % huggingface-cli login
-Token:    # input your Access Token
+% huggingface-cli login
+Token:    # <- input your Access Token
 ```
 
 Download and convert the SD2 PyTorch model to CoreML models.
@@ -69,6 +69,8 @@ Drag and drop the CoreML model files into `CoreMLModels` folder in the project.
 
 - `merges.txt, vacab.json, UnetChunk2.mlmodelc, UnetChunk1.mlmodelc, VAEDecoder.mlmodelc, TextEncoder.mlmodelc`
 
+Now you can build the project, targeting to iPhone / iPad / My Mac (Designed for iPad)
+
 ![Image](images/ss3_240.png)
 
 
@@ -84,6 +86,6 @@ important as there could be data charges or storage impact that the user might n
 ## References
 
 - Apple Swift Package / ml-stable-diffusion: https://github.com/apple/ml-stable-diffusion
-- Hugging Face Hub - stabilityai/stable-diffusion-2:（https://huggingface.co/stabilityai/stable-diffusion-2）
+- Hugging Face Hub - stabilityai/stable-diffusion-2: https://huggingface.co/stabilityai/stable-diffusion-2
 
 ![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)
