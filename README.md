@@ -5,8 +5,8 @@
 A minimal iOS app that generates images using Stable Diffusion v2.
 You can create images specifying any prompt (text) such as "a photo of an astronaut riding a horse on mars".
 
-- macOS 13.0 or newer, Xcode 14.1
-- iPhone 12+ / iOS 16.2+, iPad Pro with M1/M2 / iPadOS 16.2+
+- macOS 13.1 beta 4 or newer, Xcode 14.1
+- iPhone 12+ / iOS 16.2 beta 4 or newer, iPad Pro with M1/M2 / iPadOS 16.2 beta 4 or newer
 
 You can run the app on above mobile devices.
 And you can run the app on Mac, building as a Designed for iPad app.
@@ -96,6 +96,8 @@ important as there could be data charges or storage impact that the user might n
 ## References
 
 - Apple Swift Package / ml-stable-diffusion: https://github.com/apple/ml-stable-diffusion
+- Stable Diffusion with Core ML on Apple Silicon, Apple Dec 2022: https://machinelearning.apple.com/research/stable-diffusion-coreml-apple-silicon
+- Deploying Transformers on the Apple Neural Engine, Apple June 2022: https://machinelearning.apple.com/research/neural-engine-transformers
 - Hugging Face Hub - stabilityai/stable-diffusion-2: https://huggingface.co/stabilityai/stable-diffusion-2
 
 ![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)
