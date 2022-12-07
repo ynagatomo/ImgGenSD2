@@ -66,15 +66,19 @@ Use these options:
 python -m python_coreml_stable_diffusion.torch2coreml --convert-unet --convert-text-encoder --convert-vae-decoder --convert-safety-checker -o sd2CoremlChunked --model-version stabilityai/stable-diffusion-2-base --bundle-resources-for-swift-cli --chunk-unet --attention-implementation SPLIT_EINSUM --compute-unit CPU_AND_NE
 ```
 
-Drag and drop the CoreML model files into `CoreMLModels` folder in the project.
+How to add Core ML model files to Xcode project:
 
-- `merges.txt, vacab.json, UnetChunk2.mlmodelc, UnetChunk1.mlmodelc, VAEDecoder.mlmodelc, TextEncoder.mlmodelc`
+1. In Finder, make the directory, `CoreMLModels`, and put CoreML model files into the directory.
+    - `merges.txt, vacab.json, UnetChunk2.mlmodelc, UnetChunk1.mlmodelc, VAEDecoder.mlmodelc, TextEncoder.mlmodelc`
+    - when you make an app for only Mac, use the Unet.mlmodelc instead of UnetChunk1/2, which are for mobile devices.
+1. Remove the `CoreMLModels` group in the Xcode Project Navigator.
+1. Drag and drop the `CoreMLModels` directory in Finder into the Xcode Project Navigator, to add the files.
+    - At `Choose options for adding these files` dialog, check the `[v] Copy items if needed` and `[v] Create folder references`, and `Add to targets: [v] imggensd2`
 
-Now you can build the project, targeting to iPhone / iPad / My Mac (Designed for iPad)
-
+![Image](images/ss4_640.png)
 ![Image](images/ss3_240.png)
 
-
+Now you can build the project, targeting to iPhone, iPad, or My Mac (Designed for iPad)
 
 ## Consideration
 
