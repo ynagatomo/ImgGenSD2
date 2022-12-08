@@ -5,8 +5,8 @@
 A minimal iOS app that generates images using Stable Diffusion v2.
 You can create images specifying any prompt (text) such as "a photo of an astronaut riding a horse on mars".
 
-- macOS 13.1 beta 4 or newer, Xcode 14.1
-- iPhone 12+ / iOS 16.2 beta 4 or newer, iPad Pro with M1/M2 / iPadOS 16.2 beta 4 or newer
+- macOS 13.1 RC or newer, Xcode 14.2 or newer
+- iPhone 12+ / iOS 16.2 RC or newer, iPad Pro with M1/M2 / iPadOS 16.2 RC or newer
 
 You can run the app on above mobile devices.
 And you can run the app on Mac, building as a Designed for iPad app.
@@ -23,6 +23,16 @@ You can see how it works through the simple sample code.
 ![Image](images/ss_4_imgs.png)
 
 ![Image](images/ss0_1280.png)
+
+## Change Log
+
+- [1.0.1 (2)] - 2022-12-08 `[Changed]`
+    - Changed to delay creation of `StableDiffusionPipeline` until the first image 
+    generation and execute it in a background task.
+    - This eliminates the freeze when starting the app, but it takes time 
+    to generate the first image.
+    - Tested with Xcode 4.2 RC and macOS 13.1 RC.
+    - With the release of Xcode 14.2 RC, the correct Target OS 16.2 was specified.
 
 ## Convert CoreML models
 

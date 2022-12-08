@@ -49,23 +49,17 @@ final class ImageGenerator: ObservableObject {
 
     @Published var generationState: GenerationState = .idle
     @Published var generatedImages: GeneratedImages?
-    private let sdpipeline: StableDiffusionPipeline
+    private var sdPipeline: StableDiffusionPipeline?
 
     init() {
-        guard let path = Bundle.main.path(forResource: "CoreMLModels", ofType: nil, inDirectory: nil) else {
-            fatalError("Fatal error: failed to find the CoreML models.")
-        }
-        let resourceURL = URL(fileURLWithPath: path)
-        // TODO: move the pipeline creation to background task because it's heavy
-        if let pipeline = try? StableDiffusionPipeline(resourcesAt: resourceURL) {
-            sdpipeline = pipeline
-        } else {
-            fatalError("Fatal error: failed to create the Stable-Diffusion-Pipeline.")
-        }
     }
 
     func setState(_ state: GenerationState) { // for actor isolation
         generationState = state
+    }
+
+    func setPipeline(_ pipeline: StableDiffusionPipeline) { // for actor isolation
+        sdPipeline = pipeline
     }
 
     func setGeneratedImages(_ images: GeneratedImages) { // for actor isolation
@@ -76,30 +70,49 @@ final class ImageGenerator: ObservableObject {
         guard generationState == .idle else { return }
         Task.detached(priority: .high) {
             await self.setState(.generating(progressStep: 0))
-            do {
-                //  generateImages(prompt: String, imageCount: Int = 1, stepCount: Int = 50, seed: Int = 0,
-                //  disableSafety: Bool = false,
-                //  progressHandler: (StableDiffusionPipeline.Progress) -> Bool = { _ in true }) throws -> [CGImage?]
-                // TODO: use the progressHandler
-                let cgImages = try self.sdpipeline.generateImages(prompt: parameter.prompt,
+
+            if await self.sdPipeline == nil {
+                guard let path = Bundle.main.path(forResource: "CoreMLModels", ofType: nil, inDirectory: nil) else {
+                    fatalError("Fatal error: failed to find the CoreML models.")
+                }
+                let resourceURL = URL(fileURLWithPath: path)
+
+                if let pipeline = try? StableDiffusionPipeline(resourcesAt: resourceURL) {
+                    await self.setPipeline(pipeline)
+                } else {
+                    fatalError("Fatal error: failed to create the Stable-Diffusion-Pipeline.")
+                }
+            }
+
+            if let sdPipeline = await self.sdPipeline {
+                do {
+                    //  API:
+                    //  generateImages(prompt: String, imageCount: Int = 1, stepCount: Int = 50, seed: Int = 0,
+                    //  disableSafety: Bool = false,
+                    //  progressHandler: (StableDiffusionPipeline.Progress) -> Bool = { _ in true })
+                    //  throws -> [CGImage?]
+                    //  TODO: use the progressHandler
+                    let cgImages = try sdPipeline.generateImages(prompt: parameter.prompt,
+                                                                 imageCount: parameter.imageCount,
+                                                                 stepCount: parameter.stepCount,
+                                                                 seed: parameter.seed,
+                                                                 disableSafety: parameter.disableSafety)
+                    print("images were generated.")
+                    let uiImages = cgImages.compactMap { image in
+                        if let cgImage = image { return UIImage(cgImage: cgImage)
+                        } else { return nil }
+                    }
+                    await self.setGeneratedImages(GeneratedImages(prompt: parameter.prompt,
                                                                   imageCount: parameter.imageCount,
                                                                   stepCount: parameter.stepCount,
                                                                   seed: parameter.seed,
-                                                                  disableSafety: parameter.disableSafety)
-                print("images were generated.")
-                let uiImages = cgImages.compactMap { image in
-                    if let cgImage = image { return UIImage(cgImage: cgImage)
-                    } else { return nil }
+                                                                  disableSafety: parameter.disableSafety,
+                                    images: uiImages.map { uiImage in GeneratedImage(uiImage: uiImage) }))
+                } catch {
+                    print("failed to generate images.")
                 }
-                await self.setGeneratedImages(GeneratedImages(prompt: parameter.prompt,
-                                                              imageCount: parameter.imageCount,
-                                                              stepCount: parameter.stepCount,
-                                                              seed: parameter.seed,
-                                                              disableSafety: parameter.disableSafety,
-                                           images: uiImages.map { uiImage in GeneratedImage(uiImage: uiImage) }))
-            } catch {
-                print("failed.")
             }
+
             await self.setState(.idle)
         }
     }
