@@ -77,7 +77,10 @@ final class ImageGenerator: ObservableObject {
                 }
                 let resourceURL = URL(fileURLWithPath: path)
 
-                if let pipeline = try? StableDiffusionPipeline(resourcesAt: resourceURL) {
+                // reduceMemory option was added at v0.1.0
+                // On iOS, the reduceMemory option should be set to true
+                if let pipeline = try? StableDiffusionPipeline(resourcesAt: resourceURL,
+                                                               reduceMemory: true) {
                     await self.setPipeline(pipeline)
                 } else {
                     fatalError("Fatal error: failed to create the Stable-Diffusion-Pipeline.")

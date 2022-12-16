@@ -5,8 +5,8 @@
 A minimal iOS app that generates images using Stable Diffusion v2.
 You can create images specifying any prompt (text) such as "a photo of an astronaut riding a horse on mars".
 
-- macOS 13.1 RC or newer, Xcode 14.2 or newer
-- iPhone 12+ / iOS 16.2 RC or newer, iPad Pro with M1/M2 / iPadOS 16.2 RC or newer
+- macOS 13.1 or newer, Xcode 14.2 or newer
+- iPhone Pro 12+ / iOS 16.2 or newer, iPad Pro with M1/M2 / iPadOS 16.2 or newer
 
 You can run the app on above mobile devices.
 And you can run the app on Mac, building as a Designed for iPad app.
@@ -26,6 +26,12 @@ You can see how it works through the simple sample code.
 
 ## Change Log
 
+- [1.0.2 (3)] - 2022-12-16 `[Changed]`
+    - The apple/ml-stable-diffusion Swift Package v0.1.0 was released.
+    - At apple/ml-stable-diffusion Swift Package v0.1.0, `reduceMemory` option of StableDiffusionPipeline(resourcesAt:)
+    was added. And on iOS, the reduceMemory option should be set to true.
+    - This option was added and set to true, in `ImageGenerator.swift` when creating StableDiffusionPipeline.
+    - According to the new apple readme, iPhone requirement was changed to iPhone Pro 12+.
 - [1.0.1 (2)] - 2022-12-08 `[Changed]`
     - Changed to delay creation of `StableDiffusionPipeline` until the first image 
     generation and execute it in a background task.

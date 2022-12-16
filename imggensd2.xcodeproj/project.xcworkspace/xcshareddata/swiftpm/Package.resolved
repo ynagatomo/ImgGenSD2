@@ -6,7 +6,7 @@
       "location" : "https://github.com/apple/ml-stable-diffusion#swift-requirements",
       "state" : {
         "branch" : "main",
-        "revision" : "583cc04ece3dce9e1e8d44449f58d2eb7edef11c"
+        "revision" : "66dde8da135593eccef7bbb3a329ccf7bb1724d3"
       }
     },
     {
