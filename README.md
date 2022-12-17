@@ -104,6 +104,12 @@ Now you can build the project, targeting to iPhone, iPad, or My Mac (Designed fo
 - if you encounter the memory limit issues on mobile devices, please try adding `Increase Memory Limit` and `Extended Virtual Address Space` capabilities to your App ID. This adds an entitlement to your Xcode project.
 - please make sure that you use the App ID which registered the capabilities, "Extended Virtual Address Space" and "Increased Memory Limit", at Developer - Identifiers site. Or Xcode displays the signing and capabilities errors.
 
+### progress handler
+
+- if you would like to handle the progress handler during generating images,
+please check the another repo, which shows a sample of progress-handler.
+AR Diffusion Museum: https://github.com/ynagatomo/ARDiffMuseum
+
 ### Large binary file
 
 - Since the model files are very large (about 2.5GB), it causes a large binary of the app.
@@ -118,6 +124,14 @@ important as there could be data charges or storage impact that the user might n
 - This means that the SD2's generation time is shorter.
 
 ![Image](images/ss_4_steps.png)
+
+## Related apps
+
+- AR Diffusion Museum: It shows how to use the progress handler and displays the generating images
+step by step.
+- AR Wall Picture: It's a sample app that uses generated images. It displays images in Photo Library on the wall with AR.
+
+![Image](images/relatedapps.jpg)
 
 ## References
 
