@@ -7,6 +7,7 @@
 
 import UIKit
 import StableDiffusion
+import CoreML
 
 @MainActor
 final class ImageGenerator: ObservableObject {
@@ -77,10 +78,17 @@ final class ImageGenerator: ObservableObject {
                 }
                 let resourceURL = URL(fileURLWithPath: path)
 
+                let config = MLModelConfiguration()
+                if !ProcessInfo.processInfo.isiOSAppOnMac {
+                    config.computeUnits = .cpuAndGPU
+                }
+
                 // reduceMemory option was added at v0.1.0
                 // On iOS, the reduceMemory option should be set to true
+                let reduceMemory = ProcessInfo.processInfo.isiOSAppOnMac ? false : true
                 if let pipeline = try? StableDiffusionPipeline(resourcesAt: resourceURL,
-                                                               reduceMemory: true) {
+                                                               configuration: config,
+                                                               reduceMemory: reduceMemory) {
                     await self.setPipeline(pipeline)
                 } else {
                     fatalError("Fatal error: failed to create the Stable-Diffusion-Pipeline.")
@@ -89,12 +97,10 @@ final class ImageGenerator: ObservableObject {
 
             if let sdPipeline = await self.sdPipeline {
                 do {
-                    //  API:
-                    //  generateImages(prompt: String, imageCount: Int = 1, stepCount: Int = 50, seed: Int = 0,
-                    //  disableSafety: Bool = false,
-                    //  progressHandler: (StableDiffusionPipeline.Progress) -> Bool = { _ in true })
-                    //  throws -> [CGImage?]
-                    //  TODO: use the progressHandler
+                    // if you would like to use the progressHandler,
+                    // please check the another repo - AR Diffusion Museum:
+                    // https://github.com/ynagatomo/ARDiffMuseum
+                    // It handles the progressHandler and displays the generating images step by step.
                     let cgImages = try sdPipeline.generateImages(prompt: parameter.prompt,
                                                                  imageCount: parameter.imageCount,
                                                                  stepCount: parameter.stepCount,

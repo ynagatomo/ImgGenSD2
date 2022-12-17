@@ -25,14 +25,15 @@ You can see how it works through the simple sample code.
 ![Image](images/ss0_1280.png)
 
 ## Change Log
-
-- [1.0.2 (3)] - 2022-12-16 `[Changed]`
+- [1.0.3 (4)] - Dec 18, 2022 `[Changed]`
+    - set `MLModelConfiguration.computeUnits` to `.cpuAndGPU`, when running on mobile devices.
+- [1.0.2 (3)] - Dec 16, 2022 `[Changed]`
     - The apple/ml-stable-diffusion Swift Package v0.1.0 was released.
     - At apple/ml-stable-diffusion Swift Package v0.1.0, `reduceMemory` option of StableDiffusionPipeline(resourcesAt:)
     was added. And on iOS, the reduceMemory option should be set to true.
     - This option was added and set to true, in `ImageGenerator.swift` when creating StableDiffusionPipeline.
     - According to the new apple readme, iPhone requirement was changed to iPhone Pro 12+.
-- [1.0.1 (2)] - 2022-12-08 `[Changed]`
+- [1.0.1 (2)] - Dec 8, 2022 `[Changed]`
     - Changed to delay creation of `StableDiffusionPipeline` until the first image 
     generation and execute it in a background task.
     - This eliminates the freeze when starting the app, but it takes time 
@@ -97,6 +98,11 @@ How to add Core ML model files to Xcode project:
 Now you can build the project, targeting to iPhone, iPad, or My Mac (Designed for iPad)
 
 ## Consideration
+
+### Extended Virtual Address Space and Increased Memory Limit capabilities
+
+- if you encounter the memory limit issues on mobile devices, please try adding `Increase Memory Limit` and `Extended Virtual Address Space` capabilities to your App ID. This adds an entitlement to your Xcode project.
+- please make sure that you use the App ID which registered the capabilities, "Extended Virtual Address Space" and "Increased Memory Limit", at Developer - Identifiers site. Or Xcode displays the signing and capabilities errors.
 
 ### Large binary file
 
