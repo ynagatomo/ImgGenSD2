@@ -13,6 +13,7 @@ import CoreML
 final class ImageGenerator: ObservableObject {
     struct GenerationParameter {
         var prompt: String
+        var negativePrompt: String
         var seed: Int
         var stepCount: Int
         var imageCount: Int
@@ -26,6 +27,7 @@ final class ImageGenerator: ObservableObject {
 
     struct GeneratedImages {
         let prompt: String
+        let negativePrompt: String
         let imageCount: Int
         let stepCount: Int
         let seed: Int
@@ -50,6 +52,8 @@ final class ImageGenerator: ObservableObject {
 
     @Published var generationState: GenerationState = .idle
     @Published var generatedImages: GeneratedImages?
+    @Published var isPipelineCreated = false
+
     private var sdPipeline: StableDiffusionPipeline?
 
     init() {
@@ -61,6 +65,7 @@ final class ImageGenerator: ObservableObject {
 
     func setPipeline(_ pipeline: StableDiffusionPipeline) { // for actor isolation
         sdPipeline = pipeline
+        isPipelineCreated = true
     }
 
     func setGeneratedImages(_ images: GeneratedImages) { // for actor isolation
@@ -102,9 +107,10 @@ final class ImageGenerator: ObservableObject {
                     // https://github.com/ynagatomo/ARDiffMuseum
                     // It handles the progressHandler and displays the generating images step by step.
                     let cgImages = try sdPipeline.generateImages(prompt: parameter.prompt,
+                                                                 negativePrompt: parameter.negativePrompt,
                                                                  imageCount: parameter.imageCount,
                                                                  stepCount: parameter.stepCount,
-                                                                 seed: parameter.seed,
+                                                                 seed: UInt32(parameter.seed),
                                                                  disableSafety: parameter.disableSafety)
                     print("images were generated.")
                     let uiImages = cgImages.compactMap { image in
@@ -112,6 +118,7 @@ final class ImageGenerator: ObservableObject {
                         } else { return nil }
                     }
                     await self.setGeneratedImages(GeneratedImages(prompt: parameter.prompt,
+                                                                  negativePrompt: parameter.negativePrompt,
                                                                   imageCount: parameter.imageCount,
                                                                   stepCount: parameter.stepCount,
                                                                   seed: parameter.seed,

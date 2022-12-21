@@ -1,12 +1,12 @@
 {
   "pins" : [
     {
-      "identity" : "ml-stable-diffusion#swift-requirements",
+      "identity" : "ml-stable-diffusion",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/apple/ml-stable-diffusion#swift-requirements",
+      "location" : "https://github.com/apple/ml-stable-diffusion",
       "state" : {
         "branch" : "main",
-        "revision" : "66dde8da135593eccef7bbb3a329ccf7bb1724d3"
+        "revision" : "c90b705334c3807f4f4042cbb351b59cbe5c6f7b"
       }
     },
     {

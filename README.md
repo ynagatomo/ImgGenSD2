@@ -25,6 +25,8 @@ You can see how it works through the simple sample code.
 ![Image](images/ss0_1280.png)
 
 ## Change Log
+- [1.1.0 (5)] - Dec 21, 2022 `[Added]`
+    - Added the negative prompt. It requires the latest apple/ml-stable-diffusion Swift Package.
 - [1.0.3 (4)] - Dec 18, 2022 `[Changed]`
     - set `MLModelConfiguration.computeUnits` to `.cpuAndGPU`, when running on mobile devices.
 - [1.0.2 (3)] - Dec 16, 2022 `[Changed]`
