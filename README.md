@@ -45,21 +45,22 @@ You can see how it works through the simple sample code.
 
 ## Convert CoreML models
 
-Convert the PyTorch SD2 model to CoreML models, following Apple's instructions.
+Convert the PyTorch SD2.1 model to CoreML models, following Apple's instructions.
 (https://github.com/apple/ml-stable-diffusion)
 
 ```bash
 # create a Python environment and install dependencies
 % conda create -n coremlsd2_38 python=3.8 -y
 % conda activate coremlsd2_38
-% cd SD2ModelConvChunked
+% mkdir SD21ModelConvChunked
+% cd SD21ModelConvChunked
 % git clone https://github.com/apple/ml-stable-diffusion
 % cd ml-stable-diffusion
 pip install -e .
 ```
 
-Visit the Hugging Face Hub - stabilityai/stable-diffusion-2 model's page.
-（https://huggingface.co/stabilityai/stable-diffusion-2）
+Visit the Hugging Face Hub - stabilityai/stable-diffusion-2-1-base model's page.
+(https://huggingface.co/stabilityai/stable-diffusion-2-1-base)
 Check the Terms and Use and accept it. Then you can use the model.
 
 And you need a Hugging Face's `User Access Token`, to download huggingface/models.
@@ -71,7 +72,7 @@ Please visit Hugging Face's site and make an access token at Account Settings.
 Token:    # <- input your Access Token
 ```
 
-Download and convert the SD2 PyTorch model to CoreML models.
+Download and convert the SD2.1 PyTorch model to CoreML models.
 If you do this on a Mac/8GB memory, please close all running apps except Terminal,
 otherwise the converter will be killed due to memory issues.
 
@@ -82,7 +83,7 @@ Use these options:
 - `--attention-implementation SPLIT_EINSUM` ... use SPLIT_EINSUM for Apple Neural Engine(ANE).
 
 ```bash
-python -m python_coreml_stable_diffusion.torch2coreml --convert-unet --convert-text-encoder --convert-vae-decoder --convert-safety-checker -o sd2CoremlChunked --model-version stabilityai/stable-diffusion-2-base --bundle-resources-for-swift-cli --chunk-unet --attention-implementation SPLIT_EINSUM --compute-unit CPU_AND_NE
+python -m python_coreml_stable_diffusion.torch2coreml --convert-unet --convert-text-encoder --convert-vae-decoder --convert-safety-checker -o sd2CoremlChunked --model-version stabilityai/stable-diffusion-2-1-base --bundle-resources-for-swift-cli --chunk-unet --attention-implementation SPLIT_EINSUM --compute-unit CPU_AND_NE
 ```
 
 How to add Core ML model files to Xcode project:

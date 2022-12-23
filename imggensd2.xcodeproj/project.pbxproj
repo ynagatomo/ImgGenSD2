@@ -11,8 +11,8 @@
 		BA03C37A293D785C001426DE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA03C379293D785C001426DE /* ContentView.swift */; };
 		BA03C37C293D785D001426DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA03C37B293D785D001426DE /* Assets.xcassets */; };
 		BA03C37F293D785D001426DE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA03C37E293D785D001426DE /* Preview Assets.xcassets */; };
-		BA03C388293D80A4001426DE /* CoreMLModels in Resources */ = {isa = PBXBuildFile; fileRef = BA03C387293D80A4001426DE /* CoreMLModels */; };
 		BA03C38D293D8773001426DE /* ImageGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA03C38C293D8773001426DE /* ImageGenerator.swift */; };
+		BA07E4C5295530180021EC77 /* CoreMLModels in Resources */ = {isa = PBXBuildFile; fileRef = BA07E4C4295530180021EC77 /* CoreMLModels */; };
 		BA1E84232952ED66001701EA /* StableDiffusion in Frameworks */ = {isa = PBXBuildFile; productRef = BA1E84222952ED66001701EA /* StableDiffusion */; };
 /* End PBXBuildFile section */
 
@@ -23,8 +23,8 @@
 		BA03C37B293D785D001426DE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BA03C37E293D785D001426DE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		BA03C386293D7CE5001426DE /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		BA03C387293D80A4001426DE /* CoreMLModels */ = {isa = PBXFileReference; lastKnownFileType = folder; path = CoreMLModels; sourceTree = "<group>"; };
 		BA03C38C293D8773001426DE /* ImageGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGenerator.swift; sourceTree = "<group>"; };
+		BA07E4C4295530180021EC77 /* CoreMLModels */ = {isa = PBXFileReference; lastKnownFileType = folder; path = CoreMLModels; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,10 +59,10 @@
 		BA03C376293D785C001426DE /* imggensd2 */ = {
 			isa = PBXGroup;
 			children = (
+				BA07E4C4295530180021EC77 /* CoreMLModels */,
 				BA03C377293D785C001426DE /* imggensd2App.swift */,
 				BA03C379293D785C001426DE /* ContentView.swift */,
 				BA03C38C293D8773001426DE /* ImageGenerator.swift */,
-				BA03C387293D80A4001426DE /* CoreMLModels */,
 				BA03C37B293D785D001426DE /* Assets.xcassets */,
 				BA03C37D293D785D001426DE /* Preview Content */,
 			);
@@ -142,7 +142,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BA03C388293D80A4001426DE /* CoreMLModels in Resources */,
+				BA07E4C5295530180021EC77 /* CoreMLModels in Resources */,
 				BA03C37F293D785D001426DE /* Preview Assets.xcassets in Resources */,
 				BA03C37C293D785D001426DE /* Assets.xcassets in Resources */,
 			);
