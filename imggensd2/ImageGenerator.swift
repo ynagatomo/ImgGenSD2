@@ -14,6 +14,7 @@ final class ImageGenerator: ObservableObject {
     struct GenerationParameter {
         var prompt: String
         var negativePrompt: String
+        var guidanceScale: Float
         var seed: Int
         var stepCount: Int
         var imageCount: Int
@@ -28,6 +29,7 @@ final class ImageGenerator: ObservableObject {
     struct GeneratedImages {
         let prompt: String
         let negativePrompt: String
+        let guidanceScale: Float
         let imageCount: Int
         let stepCount: Int
         let seed: Int
@@ -72,6 +74,7 @@ final class ImageGenerator: ObservableObject {
         generatedImages = images
     }
 
+    // swiftlint:disable function_body_length
     func generateImages(_ parameter: GenerationParameter) {
         guard generationState == .idle else { return }
         Task.detached(priority: .high) {
@@ -111,6 +114,7 @@ final class ImageGenerator: ObservableObject {
                                                                  imageCount: parameter.imageCount,
                                                                  stepCount: parameter.stepCount,
                                                                  seed: UInt32(parameter.seed),
+                                                                 guidanceScale: parameter.guidanceScale,
                                                                  disableSafety: parameter.disableSafety)
                     print("images were generated.")
                     let uiImages = cgImages.compactMap { image in
@@ -119,6 +123,7 @@ final class ImageGenerator: ObservableObject {
                     }
                     await self.setGeneratedImages(GeneratedImages(prompt: parameter.prompt,
                                                                   negativePrompt: parameter.negativePrompt,
+                                                                  guidanceScale: parameter.guidanceScale,
                                                                   imageCount: parameter.imageCount,
                                                                   stepCount: parameter.stepCount,
                                                                   seed: parameter.seed,

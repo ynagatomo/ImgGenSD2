@@ -19,6 +19,7 @@ lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer
     @State private var generationParameter =
         ImageGenerator.GenerationParameter(prompt: prompt,
                                            negativePrompt: negativePrompt,
+                                           guidanceScale: 8.0,
                                            seed: 100, stepCount: 20,
                                            imageCount: 1, disableSafety: false)
     var body: some View {
@@ -71,6 +72,9 @@ struct PromptView: View {
             HStack { Text("Negative Prompt:"); Spacer() }
             TextField("Negative Prompt:", text: $parameter.negativePrompt)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
+            Stepper(value: $parameter.guidanceScale, in: 0.0...10.0, step: 0.5) {
+                Text("Guidance scale: \(parameter.guidanceScale, specifier: "%.1f") ")
+            }
             Stepper(value: $parameter.imageCount, in: 1...10) {
                 Text("Image Count: \(parameter.imageCount)")
             }

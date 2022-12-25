@@ -13,7 +13,7 @@
 		BA03C37F293D785D001426DE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA03C37E293D785D001426DE /* Preview Assets.xcassets */; };
 		BA03C38D293D8773001426DE /* ImageGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA03C38C293D8773001426DE /* ImageGenerator.swift */; };
 		BA07E4C5295530180021EC77 /* CoreMLModels in Resources */ = {isa = PBXBuildFile; fileRef = BA07E4C4295530180021EC77 /* CoreMLModels */; };
-		BA1E84232952ED66001701EA /* StableDiffusion in Frameworks */ = {isa = PBXBuildFile; productRef = BA1E84222952ED66001701EA /* StableDiffusion */; };
+		BA645DB02957E6590037BE76 /* StableDiffusion in Frameworks */ = {isa = PBXBuildFile; productRef = BA645DAF2957E6590037BE76 /* StableDiffusion */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,7 +32,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BA1E84232952ED66001701EA /* StableDiffusion in Frameworks */,
+				BA645DB02957E6590037BE76 /* StableDiffusion in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,7 +95,7 @@
 			);
 			name = imggensd2;
 			packageProductDependencies = (
-				BA1E84222952ED66001701EA /* StableDiffusion */,
+				BA645DAF2957E6590037BE76 /* StableDiffusion */,
 			);
 			productName = imggensd2;
 			productReference = BA03C374293D785C001426DE /* imggensd2.app */;
@@ -126,7 +126,7 @@
 			);
 			mainGroup = BA03C36B293D785C001426DE;
 			packageReferences = (
-				BA1E84212952ED66001701EA /* XCRemoteSwiftPackageReference "ml-stable-diffusion" */,
+				BA645DAE2957E6590037BE76 /* XCRemoteSwiftPackageReference "ml-stable-diffusion" */,
 			);
 			productRefGroup = BA03C375293D785C001426DE /* Products */;
 			projectDirPath = "";
@@ -305,7 +305,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_ASSET_PATHS = "\"imggensd2/Preview Content\"";
 				DEVELOPMENT_TEAM = J5CY9Q9UP5;
 				ENABLE_PREVIEWS = YES;
@@ -321,7 +321,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.0;
+				MARKETING_VERSION = 1.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.atarayosd.imggensd2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -336,7 +336,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_ASSET_PATHS = "\"imggensd2/Preview Content\"";
 				DEVELOPMENT_TEAM = J5CY9Q9UP5;
 				ENABLE_PREVIEWS = YES;
@@ -352,7 +352,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.0;
+				MARKETING_VERSION = 1.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.atarayosd.imggensd2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -385,9 +385,9 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		BA1E84212952ED66001701EA /* XCRemoteSwiftPackageReference "ml-stable-diffusion" */ = {
+		BA645DAE2957E6590037BE76 /* XCRemoteSwiftPackageReference "ml-stable-diffusion" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/apple/ml-stable-diffusion";
+			repositoryURL = "https://github.com/apple/ml-stable-diffusion#swift-requirements";
 			requirement = {
 				branch = main;
 				kind = branch;
@@ -396,9 +396,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		BA1E84222952ED66001701EA /* StableDiffusion */ = {
+		BA645DAF2957E6590037BE76 /* StableDiffusion */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = BA1E84212952ED66001701EA /* XCRemoteSwiftPackageReference "ml-stable-diffusion" */;
+			package = BA645DAE2957E6590037BE76 /* XCRemoteSwiftPackageReference "ml-stable-diffusion" */;
 			productName = StableDiffusion;
 		};
 /* End XCSwiftPackageProductDependency section */
