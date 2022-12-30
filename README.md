@@ -25,6 +25,8 @@ You can see how it works through the simple sample code.
 ![Image](images/ss0_1280.png)
 
 ## Change Log
+- [1.2.1 (7)] - Dec 30, 2022 `[Changed]`
+    - Changed the Seed UI from Stepper to TextField and the initial value from 100 to 1_000_000.
 - [1.2.0 (6)] - Dec 25, 2022 `[Added]`
     - Added the guidance scale. It requires the latest apple/ml-stable-diffusion Swift Package.
 - [1.1.0 (5)] - Dec 21, 2022 `[Added]`
@@ -109,7 +111,7 @@ Now you can build the project, targeting to iPhone, iPad, or My Mac (Designed fo
 - if you encounter the memory limit issues on mobile devices, please try adding `Increase Memory Limit` and `Extended Virtual Address Space` capabilities to your App ID. This adds an entitlement to your Xcode project.
 - please make sure that you use the App ID which registered the capabilities, "Extended Virtual Address Space" and "Increased Memory Limit", at Developer - Identifiers site. Or Xcode displays the signing and capabilities errors.
 
-### progress handler
+### Progress handler
 
 - if you would like to handle the progress handler during generating images,
 please check the another repo, which shows a sample of progress-handler.
@@ -130,11 +132,23 @@ important as there could be data charges or storage impact that the user might n
 
 ![Image](images/ss_4_steps.png)
 
+### Diffusers models
+
+- You can use diffusers/text-to-image models on [Hugging Face Hub](https://huggingface.co/models?pipeline_tag=text-to-image&sort=downloads) .
+- Convert the model you want to use to CoreML models and add them to the Xcode project.
+- For example, when you use the [852wa/8528-diffusion](https://huggingface.co/852wa/8528-diffusion) model,
+which is a fine-tuning model of SD v1.4, convert the models with the below command.
+
+```bash
+% python -m python_coreml_stable_diffusion.torch2coreml --convert-unet --convert-text-encoder --convert-vae-decoder --convert-safety-checker -o sd2CoremlChunked --model-version 852wa/8528-diffusion --bundle-resources-for-swift-cli --chunk-unet --attention-implementation SPLIT_EINSUM --compute-unit CPU_AND_NE
+```
+
 ## Related apps
 
-- AR Diffusion Museum: It shows how to use the progress handler and displays the generating images
-step by step.
-- AR Wall Picture: It's a sample app that uses generated images. It displays images in Photo Library on the wall with AR.
+- [AR Diffusion Museum](https://github.com/ynagatomo/ARDiffMuseum) : 
+It shows how to use the progress handler and displays the generating images step by step.
+- [AR Wall Picture](https://github.com/ynagatomo/ARWallPicture) : 
+It's a sample app that uses generated images. It displays images in Photo Library on the wall with AR.
 
 ![Image](images/relatedapps.jpg)
 

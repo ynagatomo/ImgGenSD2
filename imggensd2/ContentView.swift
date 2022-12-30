@@ -20,7 +20,8 @@ lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer
         ImageGenerator.GenerationParameter(prompt: prompt,
                                            negativePrompt: negativePrompt,
                                            guidanceScale: 8.0,
-                                           seed: 100, stepCount: 20,
+                                           seed: 1_000_000,
+                                           stepCount: 20,
                                            imageCount: 1, disableSafety: false)
     var body: some View {
         ScrollView {
@@ -72,7 +73,7 @@ struct PromptView: View {
             HStack { Text("Negative Prompt:"); Spacer() }
             TextField("Negative Prompt:", text: $parameter.negativePrompt)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
-            Stepper(value: $parameter.guidanceScale, in: 0.0...10.0, step: 0.5) {
+            Stepper(value: $parameter.guidanceScale, in: 0.0...40.0, step: 0.5) {
                 Text("Guidance scale: \(parameter.guidanceScale, specifier: "%.1f") ")
             }
             Stepper(value: $parameter.imageCount, in: 1...10) {
@@ -81,9 +82,21 @@ struct PromptView: View {
             Stepper(value: $parameter.stepCount, in: 1...100) {
                 Text("Iteration steps: \(parameter.stepCount)")
             }
-            Stepper(value: $parameter.seed, in: 0...10000) {
-                Text("Seed: \(parameter.seed)")
-            }
-        }.padding()
+            HStack { Text("Seed:"); Spacer() }
+            TextField("Seed number (0 ... 4_294_967_295)",
+                      value: $parameter.seed,
+                      formatter: NumberFormatter())
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .onSubmit {
+                    if parameter.seed < 0 {
+                        parameter.seed = 0
+                    } else if parameter.seed > UInt32.max {
+                        parameter.seed = Int(UInt32.max)
+                    } else {
+                        // do nothing
+                    }
+                }
+        }
+        .padding()
     }
 }
