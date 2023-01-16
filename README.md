@@ -25,6 +25,9 @@ You can see how it works through the simple sample code.
 ![Image](images/ss0_1280.png)
 
 ## Change Log
+- [1.2.2 (8)] - Jan 16, 2023 `[Changed]`
+    - Commented out the specifying the MLModelConfiguration.computeUnits and changed it to use the default,
+    because it is not necessary.
 - [1.2.1 (7)] - Dec 30, 2022 `[Changed]`
     - Changed the Seed UI from Stepper to TextField and the initial value from 100 to 1_000_000.
 - [1.2.0 (6)] - Dec 25, 2022 `[Added]`
