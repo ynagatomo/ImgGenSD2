@@ -25,6 +25,9 @@ You can see how it works through the simple sample code.
 ![Image](images/ss0_1280.png)
 
 ## Change Log
+- [1.3.0 (9)] - Feb 10, 2023 `[Changed]`
+    - Changed to use the Configuration structure when calling the generateImages(configuration: progressHandler:) API to support changes in the API of apple/ml-stable-diffusion v0.2.0.
+    - The apple/ml-stable-diffusion Swift Package v0.2.0 or later is required.
 - [1.2.2 (8)] - Jan 16, 2023 `[Changed]`
     - Commented out the specifying the MLModelConfiguration.computeUnits and changed it to use the default,
     because it is not necessary.

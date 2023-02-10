@@ -116,13 +116,29 @@ final class ImageGenerator: ObservableObject {
                     // please check the another repo - AR Diffusion Museum:
                     // https://github.com/ynagatomo/ARDiffMuseum
                     // It handles the progressHandler and displays the generating images step by step.
-                    let cgImages = try sdPipeline.generateImages(prompt: parameter.prompt,
-                                                                 negativePrompt: parameter.negativePrompt,
-                                                                 imageCount: parameter.imageCount,
-                                                                 stepCount: parameter.stepCount,
-                                                                 seed: UInt32(parameter.seed),
-                                                                 guidanceScale: parameter.guidanceScale,
-                                                                 disableSafety: parameter.disableSafety)
+
+                    // at v1.3.0
+                    // apple/ml-stable-diffusion v0.2.0 changed the generateImages() API
+                    // to generateImages(configuration:progressHandler:)
+                    //    let cgImages = try sdPipeline.generateImages(prompt: parameter.prompt,
+                    //                                                 negativePrompt: parameter.negativePrompt,
+                    //                                                 imageCount: parameter.imageCount,
+                    //                                                 stepCount: parameter.stepCount,
+                    //                                                 seed: UInt32(parameter.seed),
+                    //                                                 guidanceScale: parameter.guidanceScale,
+                    //                                                 disableSafety: parameter.disableSafety)
+
+                    // Mode: textToImage or imageToImage
+                    // when startingImage != nil AND strength < 1.0, imageToImage mode is selected
+                    var configuration = StableDiffusionPipeline.Configuration(prompt: parameter.prompt)
+                    configuration.negativePrompt = parameter.negativePrompt
+                    configuration.imageCount = parameter.imageCount
+                    configuration.stepCount = parameter.stepCount
+                    configuration.seed = UInt32(parameter.seed)
+                    configuration.guidanceScale = parameter.guidanceScale
+                    configuration.disableSafety = parameter.disableSafety
+                    let cgImages = try sdPipeline.generateImages(configuration: configuration)
+
                     print("images were generated.")
                     let uiImages = cgImages.compactMap { image in
                         if let cgImage = image { return UIImage(cgImage: cgImage)
