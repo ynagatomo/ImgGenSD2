@@ -25,6 +25,17 @@ You can see how it works through the simple sample code.
 
 ![Image](images/ss0_1280.png)
 
+## Image to image
+
+You can also run the imageToImage generation via the `Image to image` tab of the app.
+You specify the strength value (0.0 ... 0.9).
+
+The start image is bundled in the app to make the app simple.
+You can replace the image with your favorite one, or add a UI to take an image with a camera or get it from the photo library.
+
+![Image](images/i2i_1280.png)
+
+
 ## Change Log
 - [1.4.0 (10)] - Feb 11, 2023 `[Added]`
     - Added imageToImage generation functionality, ImageToImageView.
@@ -78,6 +89,7 @@ Visit the Hugging Face Hub - stabilityai/stable-diffusion-2-1-base model's page.
 (https://huggingface.co/stabilityai/stable-diffusion-2-1-base)
 Check the Terms and Use and accept it. Then you can use the model.
 
+<!--
 And you need a Hugging Face's `User Access Token`, to download huggingface/models.
 Please visit Hugging Face's site and make an access token at Account Settings.
 
@@ -86,27 +98,40 @@ Please visit Hugging Face's site and make an access token at Account Settings.
 % huggingface-cli login
 Token:    # <- input your Access Token
 ```
+-->
 
 Download and convert the SD2.1 PyTorch model to CoreML models.
 If you do this on a Mac/8GB memory, please close all running apps except Terminal,
 otherwise the converter will be killed due to memory issues.
+
+```bash
+usage: torch2coreml.py [-h] [--convert-text-encoder] [--convert-vae-decoder] [--convert-vae-encoder]
+                       [--convert-unet] [--convert-safety-checker] [--model-version MODEL_VERSION]
+                       [--compute-unit {ALL,CPU_AND_GPU,CPU_ONLY,CPU_AND_NE}] [--latent-h LATENT_H]
+                       [--latent-w LATENT_W] [--attention-implementation {ORIGINAL,SPLIT_EINSUM}]
+                       [-o O] [--check-output-correctness] [--chunk-unet]
+                       [--quantize-weights-to-8bits] [--bundle-resources-for-swift-cli]
+                       [--text-encoder-vocabulary-url TEXT_ENCODER_VOCABULARY_URL]
+                       [--text-encoder-merges-url TEXT_ENCODER_MERGES_URL]
+```
 
 Use these options:
 - `--model-version stabilityai/stable-diffusion-2-base` ... model version
 - `--bundle-resources-for-swift-cli` ... compile and output `mlmodelc` files into `<output-dir>/Resources` folder. The Swift Package uses them.
 - `chunk-unet` ... split the Unet model into two chunks for iOS/iPadOS execution.
 - `--attention-implementation SPLIT_EINSUM` ... use SPLIT_EINSUM for Apple Neural Engine(ANE).
+- `--convert-vae-encoder` ... convert VAEEncode for the imageToImage generation
 
 ```bash
-python -m python_coreml_stable_diffusion.torch2coreml --convert-unet --convert-text-encoder --convert-vae-decoder --convert-safety-checker -o sd2CoremlChunked --model-version stabilityai/stable-diffusion-2-1-base --bundle-resources-for-swift-cli --chunk-unet --attention-implementation SPLIT_EINSUM --compute-unit CPU_AND_NE
+python -m python_coreml_stable_diffusion.torch2coreml --convert-unet --convert-text-encoder --convert-vae-decoder --convert-vae-encoder --convert-safety-checker -o sd2CoremlChunked --model-version stabilityai/stable-diffusion-2-1-base --bundle-resources-for-swift-cli --chunk-unet --attention-implementation SPLIT_EINSUM --compute-unit CPU_AND_NE
 ```
 
-How to add Core ML model files to Xcode project:
+Import CoreML model files into Xcode project:
 
 1. In Finder, make the directory, `CoreMLModels`, and put CoreML model files into the directory.
-    - `merges.txt, vacab.json, UnetChunk2.mlmodelc, UnetChunk1.mlmodelc, VAEDecoder.mlmodelc, TextEncoder.mlmodelc`
+    - `merges.txt, vacab.json, UnetChunk2.mlmodelc, UnetChunk1.mlmodelc, VAEDecoder.mlmodelc, VAEEncoder.mlmodelc, TextEncoder.mlmodelc`
     - when you make an app for only Mac, use the Unet.mlmodelc instead of UnetChunk1/2, which are for mobile devices.
-1. Remove the `CoreMLModels` group in the Xcode Project Navigator.
+1. Remove the `CoreMLModels` group in the Xcode Project Navigator if exists.
 1. Drag and drop the `CoreMLModels` directory in Finder into the Xcode Project Navigator, to add the files.
     - At `Choose options for adding these files` dialog, check the `[v] Copy items if needed` and `[v] Create folder references`, and `Add to targets: [v] imggensd2`
 
