@@ -12,8 +12,11 @@
 		BA03C37C293D785D001426DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA03C37B293D785D001426DE /* Assets.xcassets */; };
 		BA03C37F293D785D001426DE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA03C37E293D785D001426DE /* Preview Assets.xcassets */; };
 		BA03C38D293D8773001426DE /* ImageGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA03C38C293D8773001426DE /* ImageGenerator.swift */; };
-		BA2A0BFF2974E73C0037687E /* CoreMLModels in Resources */ = {isa = PBXBuildFile; fileRef = BA2A0BFE2974E73C0037687E /* CoreMLModels */; };
 		BA34A6BF299605F70062CAF4 /* StableDiffusion in Frameworks */ = {isa = PBXBuildFile; productRef = BA34A6BE299605F70062CAF4 /* StableDiffusion */; };
+		BA34A6C129961CCE0062CAF4 /* CoreMLModels in Resources */ = {isa = PBXBuildFile; fileRef = BA34A6C029961CCE0062CAF4 /* CoreMLModels */; };
+		BA34A6C72997388D0062CAF4 /* TextToImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA34A6C62997388D0062CAF4 /* TextToImageView.swift */; };
+		BA34A6C9299738DC0062CAF4 /* PromptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA34A6C8299738DC0062CAF4 /* PromptView.swift */; };
+		BA34A6CB29974CBC0062CAF4 /* ImageToImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA34A6CA29974CBC0062CAF4 /* ImageToImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,7 +27,10 @@
 		BA03C37E293D785D001426DE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		BA03C386293D7CE5001426DE /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		BA03C38C293D8773001426DE /* ImageGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGenerator.swift; sourceTree = "<group>"; };
-		BA2A0BFE2974E73C0037687E /* CoreMLModels */ = {isa = PBXFileReference; lastKnownFileType = folder; path = CoreMLModels; sourceTree = "<group>"; };
+		BA34A6C029961CCE0062CAF4 /* CoreMLModels */ = {isa = PBXFileReference; lastKnownFileType = folder; path = CoreMLModels; sourceTree = "<group>"; };
+		BA34A6C62997388D0062CAF4 /* TextToImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextToImageView.swift; sourceTree = "<group>"; };
+		BA34A6C8299738DC0062CAF4 /* PromptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptView.swift; sourceTree = "<group>"; };
+		BA34A6CA29974CBC0062CAF4 /* ImageToImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageToImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,9 +65,12 @@
 		BA03C376293D785C001426DE /* imggensd2 */ = {
 			isa = PBXGroup;
 			children = (
-				BA2A0BFE2974E73C0037687E /* CoreMLModels */,
+				BA34A6C029961CCE0062CAF4 /* CoreMLModels */,
 				BA03C377293D785C001426DE /* imggensd2App.swift */,
 				BA03C379293D785C001426DE /* ContentView.swift */,
+				BA34A6C62997388D0062CAF4 /* TextToImageView.swift */,
+				BA34A6CA29974CBC0062CAF4 /* ImageToImageView.swift */,
+				BA34A6C8299738DC0062CAF4 /* PromptView.swift */,
 				BA03C38C293D8773001426DE /* ImageGenerator.swift */,
 				BA03C37B293D785D001426DE /* Assets.xcassets */,
 				BA03C37D293D785D001426DE /* Preview Content */,
@@ -142,7 +151,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BA2A0BFF2974E73C0037687E /* CoreMLModels in Resources */,
+				BA34A6C129961CCE0062CAF4 /* CoreMLModels in Resources */,
 				BA03C37F293D785D001426DE /* Preview Assets.xcassets in Resources */,
 				BA03C37C293D785D001426DE /* Assets.xcassets in Resources */,
 			);
@@ -178,6 +187,9 @@
 			files = (
 				BA03C37A293D785C001426DE /* ContentView.swift in Sources */,
 				BA03C38D293D8773001426DE /* ImageGenerator.swift in Sources */,
+				BA34A6C72997388D0062CAF4 /* TextToImageView.swift in Sources */,
+				BA34A6CB29974CBC0062CAF4 /* ImageToImageView.swift in Sources */,
+				BA34A6C9299738DC0062CAF4 /* PromptView.swift in Sources */,
 				BA03C378293D785C001426DE /* imggensd2App.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -305,7 +317,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_ASSET_PATHS = "\"imggensd2/Preview Content\"";
 				DEVELOPMENT_TEAM = J5CY9Q9UP5;
 				ENABLE_PREVIEWS = YES;
@@ -321,7 +333,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.0;
+				MARKETING_VERSION = 1.4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.atarayosd.imggensd2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -336,7 +348,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_ASSET_PATHS = "\"imggensd2/Preview Content\"";
 				DEVELOPMENT_TEAM = J5CY9Q9UP5;
 				ENABLE_PREVIEWS = YES;
@@ -352,7 +364,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.0;
+				MARKETING_VERSION = 1.4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.atarayosd.imggensd2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

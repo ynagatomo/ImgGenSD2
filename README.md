@@ -19,12 +19,17 @@ The project uses the Apple/ml-stable-diffusion Swift Package.
 You can see how it works through the simple sample code.
 
 - Apple/ml-stable-diffusion repo: https://github.com/apple/ml-stable-diffusion
+- v0.2.0 is required
 
 ![Image](images/ss_4_imgs.png)
 
 ![Image](images/ss0_1280.png)
 
 ## Change Log
+- [1.4.0 (10)] - Feb 11, 2023 `[Added]`
+    - Added imageToImage generation functionality, ImageToImageView.
+    - Added an image asset as a start-image for imageToImage generation.
+    - The latest apple/ml-stable-diffusion v0.2.0 is required.
 - [1.3.0 (9)] - Feb 10, 2023 `[Changed]`
     - Changed to use the Configuration structure when calling the generateImages(configuration: progressHandler:) API to support changes in the API of apple/ml-stable-diffusion v0.2.0.
     - The apple/ml-stable-diffusion Swift Package v0.2.0 or later is required.

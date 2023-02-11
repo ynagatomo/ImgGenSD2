@@ -11,7 +11,12 @@ import CoreML
 
 @MainActor
 final class ImageGenerator: ObservableObject {
+    enum GenerationMode {
+        case textToImage, imageToImage
+    }
+
     struct GenerationParameter {
+        let mode: GenerationMode
         var prompt: String
         var negativePrompt: String
         var guidanceScale: Float
@@ -19,6 +24,8 @@ final class ImageGenerator: ObservableObject {
         var stepCount: Int
         var imageCount: Int
         var disableSafety: Bool
+        var startImage: CGImage?
+        var strength: Float = 1.0
     }
 
     struct GeneratedImage: Identifiable {
@@ -74,6 +81,7 @@ final class ImageGenerator: ObservableObject {
         generatedImages = images
     }
 
+    // swiftlint:disable function_body_length
     func generateImages(_ parameter: GenerationParameter) {
         guard generationState == .idle else { return }
         Task.detached(priority: .high) {
@@ -117,19 +125,9 @@ final class ImageGenerator: ObservableObject {
                     // https://github.com/ynagatomo/ARDiffMuseum
                     // It handles the progressHandler and displays the generating images step by step.
 
-                    // at v1.3.0
                     // apple/ml-stable-diffusion v0.2.0 changed the generateImages() API
-                    // to generateImages(configuration:progressHandler:)
-                    //    let cgImages = try sdPipeline.generateImages(prompt: parameter.prompt,
-                    //                                                 negativePrompt: parameter.negativePrompt,
-                    //                                                 imageCount: parameter.imageCount,
-                    //                                                 stepCount: parameter.stepCount,
-                    //                                                 seed: UInt32(parameter.seed),
-                    //                                                 guidanceScale: parameter.guidanceScale,
-                    //                                                 disableSafety: parameter.disableSafety)
+                    //   to generateImages(configuration:progressHandler:)
 
-                    // Mode: textToImage or imageToImage
-                    // when startingImage != nil AND strength < 1.0, imageToImage mode is selected
                     var configuration = StableDiffusionPipeline.Configuration(prompt: parameter.prompt)
                     configuration.negativePrompt = parameter.negativePrompt
                     configuration.imageCount = parameter.imageCount
@@ -137,6 +135,17 @@ final class ImageGenerator: ObservableObject {
                     configuration.seed = UInt32(parameter.seed)
                     configuration.guidanceScale = parameter.guidanceScale
                     configuration.disableSafety = parameter.disableSafety
+
+                    // [Note] generation mode: textToImage or imageToImage
+                    //        when startingImage != nil AND strength < 1.0, imageToImage mode is selected
+                    switch parameter.mode {
+                    case .textToImage:
+                        configuration.strength = 1.0
+                    case .imageToImage:
+                        configuration.startingImage = parameter.startImage
+                        configuration.strength = parameter.strength
+                    }
+
                     let cgImages = try sdPipeline.generateImages(configuration: configuration)
 
                     print("images were generated.")
