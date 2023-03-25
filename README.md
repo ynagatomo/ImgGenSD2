@@ -37,6 +37,8 @@ You can replace the image with your favorite one, or add a UI to take an image w
 
 
 ## Change Log
+- Mar 25, 2023 `[Edited]`
+    - Confirmed that it works with the apple/ml-stable-diffusion v0.3.0.
 - [1.4.0 (10)] - Feb 11, 2023 `[Added]`
     - Added imageToImage generation functionality, ImageToImageView.
     - Added an image asset as a start-image for imageToImage generation.

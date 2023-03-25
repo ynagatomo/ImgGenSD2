@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/ml-stable-diffusion#swift-requirements",
       "state" : {
-        "branch" : "main",
-        "revision" : "00390a64182ddd87ef368f70f3a2de9acd26cb29"
+        "revision" : "2c4e9de73c9e723de264356f9563706ea9104212",
+        "version" : "0.3.0"
       }
     },
     {
