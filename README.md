@@ -131,7 +131,7 @@ python -m python_coreml_stable_diffusion.torch2coreml --convert-unet --convert-t
 Import CoreML model files into Xcode project:
 
 1. In Finder, make the directory, `CoreMLModels`, and put CoreML model files into the directory.
-    - `merges.txt, vacab.json, UnetChunk2.mlmodelc, UnetChunk1.mlmodelc, VAEDecoder.mlmodelc, VAEEncoder.mlmodelc, TextEncoder.mlmodelc`
+    - `merges.txt, vocab.json, UnetChunk2.mlmodelc, UnetChunk1.mlmodelc, VAEDecoder.mlmodelc, VAEEncoder.mlmodelc, TextEncoder.mlmodelc`
     - when you make an app for only Mac, use the Unet.mlmodelc instead of UnetChunk1/2, which are for mobile devices.
 1. Remove the `CoreMLModels` group in the Xcode Project Navigator if exists.
 1. Drag and drop the `CoreMLModels` directory in Finder into the Xcode Project Navigator, to add the files.
